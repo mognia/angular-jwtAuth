@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HomeComponent} from "./components/home/home.component";
-import {Routes} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {LoginComponent} from "./components/login/login.component";
 import {AuthGuard} from "./gurds/auth.guard";
 export const ROUTES: Routes = [
@@ -17,7 +17,11 @@ export const ROUTES: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forRoot(ROUTES)
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }
