@@ -3,16 +3,27 @@
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
-    <form class="example-form">
+    <form [formGroup]="loginForm">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Username">
+          <input matInput formControlName="email" placeholder="Email">
         </mat-form-field>
+          <div class="text-red-500" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+            Please provide a valid username.
+          </div>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password">
+          <input matInput formControlName="pass" placeholder="password">
         </mat-form-field>
+          <div class="text-red-500" *ngIf="loginForm.get('pass')?.invalid && (loginForm.get('pass')?.dirty || loginForm.get('pass')?.touched)">
+            Please provide a valid password.
+          </div>
       </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+      <div class="btn-box">
+      <button *ngIf="!loading" mat-stroked-button color="accent" class="btn-block" (click)="submitForm()">
+        Log in
+      </button>
+        <mat-spinner *ngIf="loading"></mat-spinner>
+      </div>
     </form>
   </mat-card>
 </div>
