@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading:boolean= false
-  constructor(private fb: FormBuilder, public authService: AuthService,private _snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder,
+    public authService: AuthService,
+    private _snackBar: MatSnackBar,
+    public router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,8 +31,9 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.loading = true;
       this.authService.authenticate(this.loginForm.value).subscribe(data => {
-          console.log(data)
-        this.loading = false
+        localStorage.setItem('token',data.token)
+        this.loading = false;
+        this.router.navigate(['/home'])
         },
         error => {
           this.loading = false

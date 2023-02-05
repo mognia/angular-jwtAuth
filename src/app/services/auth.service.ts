@@ -18,13 +18,14 @@ export class AuthService {
       password: form.pass
     }
     //  this is just the HTTP call,
-    return this.http.post<User>(`${url}/api/login`, userObj);
+    return this.http.post<any>(`${url}/api/login`, userObj);
 
   }
-  public isAuthenticated(): any {
+  public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     // Check whether the token is expired and return
     // true or false
-    // return !this.jwtHelper.isTokenExpired(token);
+    return !!token;
+
   }
 }

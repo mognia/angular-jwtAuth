@@ -15,6 +15,7 @@ import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatInputModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatTableModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule
