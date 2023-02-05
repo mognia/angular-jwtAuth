@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
   getUsers() {
     this.userService.getUsers().subscribe(data=>{
       this.dataSource = data.data
-      console.log(data)
     },
       error => {
       this.err = true
